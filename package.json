@@ -1,0 +1,21 @@
+{
+  "name": "mendelian",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "Luca Tabone<taboneluca3@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node ./src",
+    "build": "tsc -p ."
+  },
+  "devDependencies": {
+    "@types/random-seed": "^0.3.5",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "random-seed": "^0.3.0"
+  }
+}

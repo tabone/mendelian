@@ -78,4 +78,6 @@ const child = creatureOne.mate(creatureTwo);
 console.log(child.genotypes.eyes.phenotype.description);
 ```
 
-![Demo](https://github.com/tabone/illudir/assets/5364897/856bfce4-53d0-42f7-939a-e13ea1328489)
+<div align="center">
+  <img width="500" alt="Demo" src="https://github.com/tabone/mendelian/assets/5364897/ab245360-1d58-455e-bfed-e8e7e56aa2c9">
+</div>

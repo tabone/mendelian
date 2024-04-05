@@ -3,7 +3,7 @@
 
   <br />
 
-  <img width="500" alt="Screenshot 2020-05-26 at 21 03 33" src="https://github.com/tabone/illudir/assets/5364897/09f3596c-cbe0-492c-b355-713f826a4563">
+  <img width="500" alt="Screenshot 2020-05-26 at 21 03 33" src="https://i.imgur.com/M2JjEIM.png">
 
   <hr />
 </div>
@@ -79,5 +79,5 @@ console.log(child.genotypes.eyes.phenotype.description);
 ```
 
 <div align="center">
-  <img width="500" alt="Demo" src="https://github.com/tabone/mendelian/assets/5364897/ab245360-1d58-455e-bfed-e8e7e56aa2c9">
+  <img width="500" alt="Demo" src="https://i.imgur.com/ku0rIsf.jpeg">
 </div>

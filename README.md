@@ -3,7 +3,7 @@
 
   <br />
 
-  <img width="500" alt="Screenshot 2020-05-26 at 21 03 33" src="https://i.imgur.com/M2JjEIM.png">
+  <img width="500" alt="Logo" src="https://i.imgur.com/Ul6YE78.png">
 
   <hr />
 </div>
@@ -29,42 +29,42 @@ const genetics = new Genetics({ seed: "idrinkandiknowthings" });
 ### Creating `Gene`s
 
 ```javascript
-const blueEyes = genetics.createGene({
-  feature: "eye",
+const blueEye = genetics.createAllele({
+  trait: "eye-color",
   dominance: 3,
   description: "blue",
 });
 
-const greenEyes = genetics.createGene({
-  feature: "eye",
+const greenEye = genetics.createAllele({
+  trait: "eye-color",
   dominance: 5,
   description: "green",
 });
 
-const brownEyes = genetics.createGene({
-  feature: "eye",
+const brownEye = genetics.createAllele({
+  trait: "eye-color",
   dominance: 8,
   description: "brown",
 });
 ```
 
-### Creating `Creature`s with `Genotype`s
+### Creating `Creature`s with `Gene`s
 
 ```javascript
 const creatureOne = genetics.createCreature({
-  genotypes: {
-    eyes: genetics.createGenotype({
-      parentOnePair: [brownEyes, blueEyes],
-      parentTwoPair: [brownEyes, greenEyes],
+  genes: {
+    eye: genetics.createGene({
+      trait: "eye-color",
+      alleles: [brownEye, blueEye],
     }),
   },
 });
 
 const creatureTwo = genetics.createCreature({
-  genotypes: {
-    eyes: genetics.createGenotype({
-      parentOnePair: [blueEyes, blueEyes],
-      parentTwoPair: [brownEyes, greenEyes],
+  genes: {
+    eye: genetics.createGene({
+      trait: "eye-color",
+      alleles: [brownEye, blueEye],
     }),
   },
 });
@@ -73,11 +73,9 @@ const creatureTwo = genetics.createCreature({
 ### Reproducing a child
 
 ```javascript
-const child = creatureOne.mate(creatureTwo);
-
-console.log(child.genotypes.eyes.phenotype.description);
+console.log(creatureOne.mate(creatureTwo).genes.eye.phenotype.description); // => brown
 ```
 
 <div align="center">
-  <img width="500" alt="Demo" src="https://i.imgur.com/ku0rIsf.jpeg">
+  <img width="500" alt="Demo" src="https://i.imgur.com/lJ68rlz.png">
 </div>

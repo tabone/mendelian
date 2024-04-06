@@ -1,23 +1,25 @@
+import { Allele } from "./Allele";
 import { Genetics } from "./Genetics";
 
 export type GeneProps = {
-  feature: string;
-  dominance: number;
+  trait: string;
   genetics: Genetics;
-  description: string;
+  alleles: [Allele, Allele];
 };
 
 export class Gene {
-  private _feature: GeneProps["feature"];
+  private _trait: GeneProps["trait"];
+  private _alleles: GeneProps["alleles"];
   private _genetics: GeneProps["genetics"];
-  private _dominance: GeneProps["dominance"];
-  private _description: GeneProps["description"];
 
-  constructor({ feature, genetics, dominance, description }: GeneProps) {
-    this._feature = feature;
+  constructor({ trait, alleles, genetics }: GeneProps) {
+    if (alleles.some((allele) => allele.trait !== trait)) {
+      throw new Error("allele trait must match the gene trait");
+    }
+
+    this._trait = trait;
+    this._alleles = alleles;
     this._genetics = genetics;
-    this._dominance = dominance;
-    this._description = description;
   }
 
   get genetics() {
@@ -28,15 +30,21 @@ export class Gene {
     return this._genetics.random;
   }
 
-  get feature() {
-    return this._feature;
+  get type() {
+    const [alleleOne, alleleTwo] = this._alleles;
+    return alleleOne === alleleTwo ? "homozygous" : "heterozygous";
   }
 
-  get dominance() {
-    return this._dominance;
+  get trait() {
+    return this._trait;
   }
 
-  get description() {
-    return this._description;
+  get alleles(): GeneProps["alleles"] {
+    return [...this._alleles];
+  }
+
+  get phenotype() {
+    const [alleleOne, alleleTwo] = this._alleles;
+    return alleleOne.dominance > alleleTwo.dominance ? alleleOne : alleleTwo;
   }
 }

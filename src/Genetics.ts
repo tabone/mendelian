@@ -1,6 +1,6 @@
 import { create as createRandomSeed, RandomSeed } from "random-seed";
 import { Gene, GeneProps } from "./Gene";
-import { Genotype, GenotypeProps } from "./Genotype";
+import { Allele, AlleleProps } from "./Allele";
 import { Creature, CreatureProps } from "./Creature";
 
 type GeneticsProps = {
@@ -28,8 +28,8 @@ export class Genetics {
     return new Gene({ ...props, genetics: this });
   }
 
-  createGenotype(props: Omit<GenotypeProps, "genetics">) {
-    return new Genotype({ ...props, genetics: this });
+  createAllele(props: Omit<AlleleProps, "genetics">) {
+    return new Allele({ ...props, genetics: this });
   }
 
   createCreature(props: Omit<CreatureProps, "genetics">) {

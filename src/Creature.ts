@@ -1,18 +1,18 @@
+import { Gene } from "./Gene";
 import { Genetics } from "./Genetics";
-import { Genotype } from "./Genotype";
 
 export type CreatureProps = {
   genetics: Genetics;
-  genotypes: Record<string, Genotype>;
+  genes: Record<string, Gene>;
 };
 
 export class Creature {
+  private _genes: CreatureProps["genes"];
   private _genetics: CreatureProps["genetics"];
-  private _genotypes: CreatureProps["genotypes"];
 
-  constructor({ genetics, genotypes }: CreatureProps) {
+  constructor({ genes, genetics }: CreatureProps) {
+    this._genes = genes;
     this._genetics = genetics;
-    this._genotypes = genotypes;
   }
 
   get genetics() {
@@ -23,23 +23,34 @@ export class Creature {
     return this._genetics.random;
   }
 
-  get genotypes() {
-    return { ...this._genotypes };
+  get genes() {
+    return { ...this._genes };
   }
 
   mate(otherCreature: Creature) {
     return new Creature({
       genetics: this._genetics,
 
-      genotypes: (
-        Object.keys(this._genotypes) as (keyof typeof this._genotypes)[]
-      ).reduce<Creature["genotypes"]>((genotypes, key) => {
-        genotypes[key] = this._genetics.createGenotype({
-          parentOnePair: this._genotypes[key].pair,
-          parentTwoPair: otherCreature.genotypes[key].pair,
+      genes: (Object.keys(this._genes) as (keyof typeof this._genes)[]).reduce<
+        CreatureProps["genes"]
+      >((genes, key) => {
+        const { trait } = this._genes[key];
+
+        const creatureGeneAlleles = this._genes[key].alleles;
+        const otherCreatureGeneAlleles = otherCreature._genes[key].alleles;
+
+        genes[key] = new Gene({
+          trait,
+          genetics: this._genetics,
+          alleles: [
+            creatureGeneAlleles[this.random(creatureGeneAlleles.length)],
+            otherCreatureGeneAlleles[
+              this.random(otherCreatureGeneAlleles.length)
+            ],
+          ],
         });
 
-        return genotypes;
+        return genes;
       }, {}),
     });
   }

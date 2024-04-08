@@ -15,7 +15,7 @@ This package provides functionality for simulating genetic inheritance in creatu
 You can install the package via npm:
 
 ```bash
-npm install genetics
+yarn add mendelian
 ```
 
 ## Usage
@@ -23,6 +23,8 @@ npm install genetics
 ### Creating a new seeded `Genetics` instance
 
 ```javascript
+import { Genetics } from "mendelian";
+
 const genetics = new Genetics({ seed: "idrinkandiknowthings" });
 ```
 
